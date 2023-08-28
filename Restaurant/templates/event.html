@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Events{% endblock title %}
+
+{% block content %}
+  <!-- ======= Events Section ======= -->
+  <section id="events" class="events mt-5">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title mt-5">
+        <h2>Events</h2>
+        <p>Organize Your Events in our Restaurant</p>
+      </div>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for event in events %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="row event-item">
+              <div class="col-lg-6">
+                <img src="{{ event.events_image.url }}" class="img-fluid" alt="{{ event.title }} Image">
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0 content">
+               <a href="{% url 'book_a_table' %}"> <h3>{{ event.title }}</h3></a>
+                <div class="price">
+                  <p><span>${{ event.price }}</span></p>
+                </div>
+                <p class="fst-italic">
+                  {{ event.desc }}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    </div>
+  </section><!-- End Events Section -->
+
+{% endblock content %}

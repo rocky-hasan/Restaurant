@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+  <!-- ======= Book A Table Section ======= -->
+    <section id="book-a-table" class="book-a-table mt-5">
+   <div class="container mt-5 mx-4">
+     <div class="row justify-content-around mt-5 mx-5">
+       <div class="col-sm-6 mt-4">
+        <div class="section-title">
+          <h2>Reservation</h2>
+          <p>Book a Table</p>
+        </div>
+           <form action="" method="post" novalidate class="shadow rounded">  {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                         <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} >{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+
+               {% for fm in form %}
+                 <div class=" mb-6 mt-1">
+                     <label><i class="{{fm.field.widget.attrs.icon}}"></i></label>
+                     {{fm.label_tag}}{{fm}} <small>{{fm.errors | striptags}}</small>
+                 </div>
+               {% endfor %}
+               <input type="submit" value="Booking Done" class="btn btn-primary mt-1">
+
+               {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                    <p class="alert alert-danger my-3" >{{error}}</p>
+                  {% endfor %}
+               {% endif %}
+           </form>
+       </div>
+     </div>
+   </div>
+    </section><!-- End Book A Table Section -->
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+{% block content %}
+<div class="container mt-5">
+ <div class="row mt-5">
+  <div class="col-sm-6">
+        <div class="section-title mt-5">
+              <h2>Order Summery</h2>
+          <p>Checkout your summery</p>
+        </div>
+    <hr>
+    {% for item in cart_item %}
+      <div class="card">
+        <div class="card-body text-black">
+          <h5>Product: {{item.food.food_name}}</h5>
+          <p>Quantity: {{item.quantity}}</p>
+          <p class="fw-bold">Price: {{item.total_cost}}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <p class="fw-bold ">Total Cost +Rs.70 = {{totalamount}}</p>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1 mt-5">
+        <div class="section-title">
+              <h2>address</h2>
+          <p> Select your Address</p>
+        </div>
+    <hr>
+    <form action="/paymentdone/">
+
+      {% for ad in add %}
+
+      <div class="card text-black">
+        <div class="card-body">
+        <h5>{{ad.name}}</h5>
+          <p>{{ad.email}}</p>
+        <p>{{ad.city}},{{ad.state}},{{ad.house_no}} - {{ad.zipcode}}</p>
+        </div>
+      </div>
+        <div class="form-check mt-2 mb-5">
+          <input class="form-check-input" name="custid" id="custid{{forloop.counter}}" type="radio" value="{{ad.id}}">
+          <label class="form-check-label fw-bold" for="custid{{forloop.counter}}">
+            Address: {{forloop.counter}} </label>
+        </div>
+      {% endfor %}
+        <div class="text-end">
+          <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

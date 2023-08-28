@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+<div class="container mt-5 mx-4">
+    <div class="row justify-content-around mt-5 mx-5">
+        <div class="col-sm-2 mt-5">
+            <div>
+                <ul class="list-unstyled">
+                    <li class="d-grid "><a href="{% url 'profile' %}" class="btn btn-dark">Profile</a></li>
+                    <li class="d-grid bg-white rounded mt-2"><a href="{% url 'address' %}" class="btn ">Address</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-10 mt-5">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-body">
+                    <div class="card-title">
+                        <div class="col-sm-3"><h3>Candidate Details</h3></div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %}>{{message}}</div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+                            <a href="{% url 'update_customer_profile' %}" class="btn btn-light d-grid gap-2 d-md-flex justify-content-md-end">Update Details</a>
+                        </div>
+                    </div>
+                    {% if customer %}
+                    <div>
+                        <h5>Name: <b>{{customer.name}}</b></h5><hr/>
+                        <h5>Email ID: <b>{{customer.email}}</b></h5><hr/>
+                        <h5>City: <b>{{customer.city}}</b></h5><hr/>
+                        <h5>House No: <b>{{customer.house_no}}</b></h5><hr/>
+                        <h5>Zipcode: <b>{{customer.zipcode}}</b></h5><hr/>
+                        <h5>State: <b>{{customer.state}}</b></h5><hr/>
+                    </div>
+                    {% else %}
+                    <p>No customer data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

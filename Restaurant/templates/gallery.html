@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gellary{% endblock title %}
+
+{% block content %}
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery mt-5">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-title mt-5">
+          <h2>Gallery</h2>
+          <p>Some photos from Our Restaurant</p>
+        </div>
+      </div>
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-0">
+       {% for gallery in gallery_img %}
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{{gallery.gallery_image.url}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{gallery.gallery_image.url}}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+{% endblock content %}

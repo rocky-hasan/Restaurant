@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} About {% endblock title %}
+{% block content %}
+      <!-- ======= About Section ======= -->
+    <section id="about" class="about mt-5">
+      <div class="container mt-5" data-aos="fade-up">
+         {% for a in ab %}
+        <div class="row mt-5">
+          <div class="col-lg-6 order-1 order-lg-2"  data-aos-delay="100">
+            <div class="about-img">
+              <img src="{{a.image.url}}" alt="">
+            <!--  <img src="{% static 'img/about.jpg' %}" alt=""> -->
+            </div>
+          </div>
+
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3>{{ a.heading }}</h3>
+            <ul>
+              <li><i class="fa-solid fa-circle-half-stroke"></i> {{a.line1}}</li>
+              <li><i class="fa-solid fa-circle-half-stroke"></i> {{a.line2}}</li>
+              <li><i class="fa-solid fa-circle-half-stroke"></i>  {{a.line3}}</li>
+            </ul>
+            <p>
+               {{a.desc}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+{% endblock content %}

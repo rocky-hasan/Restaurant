@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chefs{% endblock title %}
+
+{% block content %}
+  <!-- ======= Chefs Section ======= -->
+  <section id="chefs" class="chefs mt-5">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title mt-5">
+        <h2>Chefs</h2>
+        <p>Our Professional Chefs</p>
+      </div>
+
+      <div class="row">
+        {% for chef in chefs %}
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <img src="{{ chef.chefs_image.url }}" class="img-fluid" alt="{{ chef.name }}">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>{{ chef.name }}</h4>
+                  <span>{{ chef.title }}</span>
+                </div>
+                <div class="social">
+                  <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </section><!-- End Chefs Section -->
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}starter{% endblock title %}
+
+{% block content %}
+<!-- ======= Menu Section ======= -->
+<section id="menu" class="menu section-bg mt-5">
+  <div class="container mt-5" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Menu</h2>
+      <p>Check Our Tasty Menu</p>
+    </div>
+
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="menu-flters">
+          <li data-filter="*"><a href="{% url 'menu' %}">All</a></li>
+          <li data-filter=".filter-starters"><a href="{% url 'starter' %}">Starters</a> </li>
+          <li data-filter=".filter-salads" class="filter-active"><a href="{% url 'salad' %}">Salads</a> </li>
+          <li data-filter=".filter-specialty"><a href="{% url 'speciality' %}">Speciality</a> </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+      {% for f in food %}
+  <div class="col-lg-6 menu-item filter-{{ f.category }}">
+        <img src="{{ f.food_image.url }}" class="menu-img" alt="">
+        <div class="menu-content">
+          <a href="#">{{ f.food_name }}</a><span>${{ f.price }}</span>
+        </div>
+        <div class="menu-ingredients">
+          {{ f.desc }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section><!-- End Menu Section -->
+{% endblock content %}
